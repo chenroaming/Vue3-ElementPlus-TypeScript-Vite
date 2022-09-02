@@ -1,26 +1,12 @@
+<script setup lang='ts' name="Layout">
+import SideBar from './sideBar/SideBar.vue'
+</script>
+
 <template>
  <div class="t">
-  <div class="t-main">
-    <div class="t-main-app">
-      <div class="t-main-app-header">
-
-      </div>
-    </div>
-  </div>
+  <SideBar />
  </div>
 </template>
-
-<script lang='ts'>
-import { ref, defineComponent } from 'vue'
-export default defineComponent({
-  name: 'LayoutContainer',
-  setup () {
-    return {
-
-    }
-  }
-})
-</script>
 
 <style scoped lang = "scss">
   .t {
