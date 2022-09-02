@@ -18,12 +18,14 @@ const nowActive = ref('')
   <el-scrollbar class="scrollbar-wrapper">
     <el-menu
       router
+      background-color="#304156"
+      text-color="#fff"
       :default-active="nowActive"
       class="el-menu-vertical-demo"
       :collapse="isCollapse">
       <SideBarItem
         v-for="item in filterRouter"
-        :key="item.path"
+        :key="item.name"
         :item="item"></SideBarItem>
     </el-menu>
   </el-scrollbar>

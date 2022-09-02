@@ -1,5 +1,5 @@
 <script setup lang='ts' name="SideBarItem">
-import { computed, defineProps } from 'vue'
+import { computed } from 'vue'
 import type { PropType } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 const props = defineProps({
@@ -16,26 +16,35 @@ const props = defineProps({
     })
   }
 })
-const hasChildNode = computed(() => {
-  return props.item.children && props.item.children.length > 0
+const hasChildNode = computed<boolean | undefined>(() => {
+  return props.item.children instanceof Array &&
+    props.item.children.length > 0 &&
+    props.item.meta?.isCollapse as boolean | undefined
 })
+const hasChild = (item:RouteRecordRaw):boolean => {
+  console.log(item, item.children instanceof Array && item.children.length > 0)
+  return item.children instanceof Array && item.children.length > 0
+}
 </script>
 <template>
  <el-sub-menu :index="item.path" v-if="hasChildNode">
     <template #title>
-      <i :class="item.meta?.icon"></i>
+      <el-icon>
+        <component :is="item.meta?.icon" />
+      </el-icon>
+      <el-icon><location /></el-icon>
       <span>{{ item.meta?.title }}</span>
     </template>
     <!-- 递归显示子菜单 -->
     <el-menu-item-group
       v-for="child in item.children"
-      :key="child.meta?.title ?? ''"
+      :key="child.name"
       >
       <SlideBarItem
-        v-if="child.children && child.children.length > 0"
+        v-if="hasChild(child)"
         :item="child"></SlideBarItem>
       <el-menu-item
-        v-if="!child.children"
+        v-else
         :key="child.name"
         :index="child.path">{{ child.meta?.title ?? '' }}</el-menu-item>
     </el-menu-item-group>

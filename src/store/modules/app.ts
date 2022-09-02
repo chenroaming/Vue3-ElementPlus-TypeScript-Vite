@@ -1,10 +1,11 @@
 import type { State } from '@/types/store/app'
 import type { RouteRecordRaw } from 'vue-router'
+import asyncRoutes from '@/router/asyncRoutes'
 const app = {
   namespaced: true,
   state: ():State => ({
     isCollapse: false, // 侧边菜单栏收缩开关
-    asyncRouter: []
+    asyncRouter: Object.values(asyncRoutes) as RouteRecordRaw[]
   }),
   mutations: {
     /**
