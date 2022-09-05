@@ -8,7 +8,7 @@ const routes:RouteRecordRaw = {
   redirect: '/menu2/child1',
   meta: {
     title: '菜单二',
-    icon: 'Grid',
+    icon: 'UserFilled',
     roles: ['admin', 'editor'],
     isCollapse: false
   },

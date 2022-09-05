@@ -5,7 +5,7 @@ const routes:RouteRecordRaw = {
   component: Layout,
   redirect: '/dashboard',
   name: 'Dashboard',
-  meta: { title: '首页', roles: ['admin', 'editor'], icon: 'Grid' },
+  meta: { title: '首页', roles: ['admin', 'editor'], icon: 'HomeFilled' },
   children: [
     {
       path: '/dashboard',

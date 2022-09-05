@@ -7,7 +7,7 @@ const routes:RouteRecordRaw = {
   name: 'menu6',
   meta: {
     title: '菜单六',
-    icon: 'Grid',
+    icon: 'Promotion',
     roles: ['admin'],
     isCollapse: true
   },
