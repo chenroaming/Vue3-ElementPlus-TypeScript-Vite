@@ -45,7 +45,7 @@ const nowActive = ref('')
 
 <style scoped lang = "scss">
 .sideBar {
-  width: 200px;
+  width: 198px;
   height: 100vh;
   background: #304156;
 }

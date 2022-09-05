@@ -4,13 +4,13 @@
  * @Author: chenroaming
  * @Date: 2022-08-25 09:33:08
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-09-01 09:49:56
+ * @LastEditTime: 2022-09-05 10:46:14
  */
-import axios, { AxiosInstance } from 'axios'
+import axios from 'axios'
 // import $router from '@/router'
 import { Toast } from 'vant'
 import type { AxiosRqConfig } from '@/types/utils'
-import type { AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 // 是否在收到接口回复后弹提示语
 let showTips = false
 

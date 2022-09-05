@@ -29,10 +29,10 @@ const hasChild = (item:RouteRecordRaw):boolean => {
 <template>
  <el-sub-menu :index="item.path" v-if="hasChildNode">
     <template #title>
-      <el-icon>
-        <component :is="item.meta?.icon" />
+      <el-icon :size="20">
+        <component
+          :is="item.meta?.icon" />
       </el-icon>
-      <el-icon><location /></el-icon>
       <span>{{ item.meta?.title }}</span>
     </template>
     <!-- 递归显示子菜单 -->
@@ -51,11 +51,11 @@ const hasChild = (item:RouteRecordRaw):boolean => {
   </el-sub-menu>
   <el-menu-item :index="item.path" v-else>
     <template #title>
+      <el-icon :size="20">
+        <component
+          :is="item.meta?.icon" />
+      </el-icon>
       <span>{{ item.meta?.title ?? '' }}</span>
     </template>
   </el-menu-item>
 </template>
-
-<style scoped lang = "scss">
-
-</style>
