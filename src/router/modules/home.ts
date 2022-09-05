@@ -1,6 +1,6 @@
 import Layout from '@/layout/LayOut.vue'
-import type { RouteRecordRaw } from 'vue-router'
-const routes:RouteRecordRaw = {
+import type { NewRouteRecordRaw } from '@/types/utils/menu'
+const routes:NewRouteRecordRaw = {
   path: '/',
   component: Layout,
   redirect: '/dashboard',

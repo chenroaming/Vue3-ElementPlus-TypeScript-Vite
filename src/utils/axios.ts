@@ -4,11 +4,11 @@
  * @Author: chenroaming
  * @Date: 2022-08-25 09:33:08
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-09-05 10:46:14
+ * @LastEditTime: 2022-09-05 14:03:45
  */
 import axios from 'axios'
 // import $router from '@/router'
-import { Toast } from 'vant'
+import { ElMessage } from 'element-plus'
 import type { AxiosRqConfig } from '@/types/utils'
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 // 是否在收到接口回复后弹提示语
@@ -55,7 +55,11 @@ class Request {
       error => {
         showTips = false
         // 请求失败时，弹窗提示，可根据实际业务修改
-        Toast.fail(error.message)
+        ElMessage({
+          showClose: true,
+          message: error.message,
+          type: 'error'
+        })
         return Promise.reject(new Error(error.message || 'Error'))
       }
     )
@@ -67,28 +71,28 @@ class Request {
         // 临时的一个判断方法，这里调用的是天天基金网的接口，只要Data为true，则判断为请求成功
         // 具体可根据实际业务进行修改
         if (res.Data) {
-          showTips && Toast({
+          showTips && ElMessage({
+            showClose: true,
             message: '查询成功！',
-            type: 'success',
-            duration: 5 * 1000
+            type: 'success'
           })
           showTips = false
           return response
         }
         // 假设接口返回的code为非20000，则判断为错误，可根据实际项目调整
         if (res.code === 20000) {
-          showTips && Toast({
+          showTips && ElMessage({
+            showClose: true,
             message: res.message,
-            type: 'success',
-            duration: 5 * 1000
+            type: 'success'
           })
           showTips = false
           return response
         } else {
-          Toast({
+          ElMessage({
+            showClose: true,
             message: `错误信息：${res.message}`,
-            type: 'fail',
-            duration: 5 * 1000
+            type: 'error'
           })
           showTips = false
           return response
@@ -102,11 +106,11 @@ class Request {
           return
         }
         showTips = false
-        error.message && Toast(
+        error.message && ElMessage(
           {
+            showClose: true,
             message: `服务器或者网络出错！错误信息：${error.message}，HTTP错误码：${error.response.status || '暂无'}`,
-            type: 'fail',
-            forbidClick: true
+            type: 'error'
           }
         )
         return Promise.reject(new Error(error.message || 'Error'))
