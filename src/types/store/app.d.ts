@@ -1,6 +1,5 @@
-import type { RouteRecordRaw } from 'vue-router'
-
+import type { NewRouteRecordRaw } from '../utils/menu'
 export interface State {
   isCollapse: boolean,
-  asyncRouter: RouteRecordRaw[]
+  asyncRouter: NewRouteRecordRaw[]
 }

@@ -1,10 +1,18 @@
 <script setup lang='ts' name="Layout">
 import SideBar from './sideBar/SideBar.vue'
+import HeaderContainer from './header/HeaderContainer.vue'
+import TagsViews from './tagsViews/TagsViews.vue'
+import AppMain from './appMain/AppMain.vue'
 </script>
 
 <template>
  <div class="t">
   <SideBar />
+  <div class="t-s">
+    <HeaderContainer />
+    <TagsViews />
+    <AppMain />
+  </div>
  </div>
 </template>
 
@@ -12,7 +20,7 @@ import SideBar from './sideBar/SideBar.vue'
   .t {
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     overflow: hidden;
     &-main {
       width: 100%;
@@ -23,6 +31,10 @@ import SideBar from './sideBar/SideBar.vue'
         width: 100%;
         height: calc(100vh - 60px);
       }
+    }
+    &-s {
+      display: flex;
+      flex-direction: column;
     }
   }
 </style>
