@@ -8,7 +8,7 @@ import AppMain from './appMain/AppMain.vue'
 <template>
  <div class="t">
   <SideBar />
-  <div class="t-s">
+  <div>
     <HeaderContainer />
     <TagsViews />
     <AppMain />
@@ -31,10 +31,6 @@ import AppMain from './appMain/AppMain.vue'
         width: 100%;
         height: calc(100vh - 60px);
       }
-    }
-    &-s {
-      display: flex;
-      flex-direction: column;
     }
   }
 </style>
