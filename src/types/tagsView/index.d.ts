@@ -3,3 +3,5 @@ export interface tags {
 }
 
 export type tagsView = tags[]
+
+export type EffectMode = 'dark' | 'plain'

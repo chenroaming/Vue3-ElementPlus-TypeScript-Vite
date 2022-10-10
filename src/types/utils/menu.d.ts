@@ -3,14 +3,15 @@
  * @Author: chenroaming
  * @Date: 2022-09-05 14:24:26
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-09-05 14:34:21
+ * @LastEditTime: 2022-10-10 14:31:39
  */
 import type { RouteRecordRaw } from 'vue-router'
 
 type Meta = {
   icon?: string,
   title: string,
-  roles?: string[]
+  roles?: string[],
+  isCollapse?: boolean
 }
 
 export type NewRouteRecordRaw = RouteRecordRaw & {
