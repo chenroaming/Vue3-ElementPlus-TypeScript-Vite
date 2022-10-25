@@ -6,7 +6,6 @@ const routes:NewRouteRecordRaw = {
   path: '/menu2',
   component: Layout,
   name: 'menu2',
-  redirect: '/menu2/child1',
   meta: {
     title: '菜单二',
     icon: 'UserFilled',
@@ -15,7 +14,7 @@ const routes:NewRouteRecordRaw = {
   },
   children: [
     {
-      path: '/menu2/child1',
+      path: '/menu2',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
         title: '菜单二',

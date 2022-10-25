@@ -4,7 +4,6 @@ import type { NewRouteRecordRaw } from '@/types/utils/menu'
 const routes:NewRouteRecordRaw = {
   path: '/menu1',
   component: Layout,
-  redirect: '/menu1/child1',
   name: 'menu1',
   meta: {
     title: '菜单一',
@@ -14,7 +13,7 @@ const routes:NewRouteRecordRaw = {
   },
   children: [
     {
-      path: '/menu1/child1',
+      path: '/menu1',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
         title: '菜单一',

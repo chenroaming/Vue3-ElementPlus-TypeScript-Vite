@@ -20,6 +20,7 @@ const currentSelectedIndex = computed(() => {
   return tags.value.findIndex(el => el.title === $route.meta.title)
 })
 watch($route, (cur:RouteLocationNormalizedLoaded) => {
+  console.log(cur.meta)
   if (!checkIsExist(cur.meta as Meta, tags.value)) {
     tags.value.push(cur.meta as Meta)
   }
