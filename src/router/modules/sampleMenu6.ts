@@ -31,7 +31,7 @@ const routes:NewRouteRecordRaw = {
           meta: {
             title: '菜单六第三级菜单1',
             roles: ['admin'],
-            icon: 'Grid'
+            icon: ''
           },
           name: 'menu6_child1_1'
         },
@@ -41,7 +41,7 @@ const routes:NewRouteRecordRaw = {
           meta: {
             title: '菜单六第三级菜单2',
             roles: ['admin'],
-            icon: 'Grid'
+            icon: ''
           },
           name: 'child6-1-2'
         },
@@ -51,7 +51,7 @@ const routes:NewRouteRecordRaw = {
           meta: {
             title: '菜单六第三级菜单3',
             roles: ['admin'],
-            icon: 'Grid'
+            icon: ''
           },
           name: 'menu6_child1_3'
         },
@@ -61,7 +61,7 @@ const routes:NewRouteRecordRaw = {
           meta: {
             title: '菜单六第三级菜单4',
             roles: ['admin'],
-            icon: 'Grid'
+            icon: ''
           },
           name: 'menu6_child1_4'
         },
@@ -71,7 +71,7 @@ const routes:NewRouteRecordRaw = {
           meta: {
             title: '菜单六第三级菜单5',
             roles: ['admin'],
-            icon: 'Grid'
+            icon: ''
           },
           name: 'menu6_child1_5'
         }

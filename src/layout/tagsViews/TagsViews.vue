@@ -7,7 +7,7 @@ import type { ElScrollbar, ElTag } from 'element-plus'
 const $route = useRoute()
 const tags = ref<Meta[]>([])
 const scrollbar = ref<InstanceType<typeof HTMLElement>>()
-const tag = ref([])
+const tag = ref<InstanceType<typeof ElTag>[]>([])
 const activeMenu = ref<string>('')
 const space = 20
 const checkIsExist = (item:Meta, arr:Meta[]):boolean => {
