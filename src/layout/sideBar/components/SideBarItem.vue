@@ -64,8 +64,8 @@ const hasChild = (item:NewRouteRecordRaw):boolean => {
         :index="child.path">
         <template #title>
           <MenuTitle
-            :icon="item.meta?.icon"
-            :title="item.meta?.title"
+            :icon="child.meta?.icon"
+            :title="child.meta?.title"
             />
         </template>
       </el-menu-item>
