@@ -3,7 +3,7 @@
  * @Author: chenroaming
  * @Date: 2022-09-05 14:24:26
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-10-25 14:43:50
+ * @LastEditTime: 2022-10-26 09:29:20
  */
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -17,4 +17,9 @@ type Meta = {
 export type NewRouteRecordRaw = RouteRecordRaw & {
   meta: Meta,
   children?: NewRouteRecordRaw[] // 路由里的children字段并不是必须的
+}
+
+export type RouteRecord = {
+  path: string,
+  meta: Meta
 }

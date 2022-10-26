@@ -1,31 +1,44 @@
 <script setup lang='ts' name="TagsView">
 import { watch, computed, ref, nextTick } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import type { Meta } from '@/types/utils/menu'
+import type { Meta, RouteRecord } from '@/types/utils/menu'
 import type { ElScrollbar, ElTag } from 'element-plus'
 const $route = useRoute()
+const $router = useRouter()
 const tags = ref<Meta[]>([])
 const scrollbar = ref<InstanceType<typeof HTMLElement>>()
 const tag = ref<InstanceType<typeof ElTag>[]>([])
 const activeMenu = ref<string>('')
 const space = 20
-const checkIsExist = (item:Meta, arr:Meta[]):boolean => {
-  return arr.some(el => el.title === item.title)
-}
-const effectMode = (title:string) => {
-  return activeMenu.value === title ? 'dark' : 'plain'
-}
-const currentSelectedIndex = computed(() => {
-  return tags.value.findIndex(el => el.title === $route.meta.title)
-})
+const routeRecords:RouteRecord[] = []
+const checkIsExist = (item:Meta):boolean => tags.value
+  .some(el => el.title === item.title)
+
+const effectMode = (title:string) => activeMenu.value === title ? 'dark' : 'plain'
+
+const currentSelectedIndex = computed(() => tags.value
+  .findIndex(el => el.title === $route.meta.title))
+
 watch($route, (cur:RouteLocationNormalizedLoaded) => {
-  if (!checkIsExist(cur.meta as Meta, tags.value)) {
+  const isExist = routeRecords.some(el => el.path === cur.path)
+  const { path, meta } = cur
+  if (!isExist) {
+    routeRecords.push({ path, meta })
+  }
+  if (!checkIsExist(cur.meta as Meta)) {
     tags.value.push(cur.meta as Meta)
   }
   activeMenu.value = cur.meta.title as string
 })
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+const goTo = (item:Meta) => {
+  const { path } = routeRecords
+    .find(el => el.meta.title === item.title) as RouteRecord
+  $router.push({
+    path
+  })
+}
 watch(activeMenu, async () => {
   await nextTick()
   const nowArr = tag.value.slice(0, currentSelectedIndex.value + 1)
@@ -47,12 +60,14 @@ watch(activeMenu, async () => {
           <el-tag
             v-for="(item, i) in tags"
             :key="item.title"
-            :ref="el => {
-              if (el) tag[i] = el;
-            }
-          "
+            :ref="(el) => {
+                if (el) tag[i] = el;
+              }
+            "
+            @click="goTo(item)"
             closable
-            :effect="effectMode(item.title)">
+            :effect="effectMode(item.title)"
+            style="cursor: pointer;">
             {{ item.title }}
           </el-tag>
         </el-space>
