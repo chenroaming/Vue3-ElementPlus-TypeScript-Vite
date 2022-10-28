@@ -1,10 +1,15 @@
 <script setup lang='ts' name="AppMain">
-
+import { useRoute } from 'vue-router'
+const $route = useRoute()
 </script>
 <template>
  <div class="appMain">
   <el-scrollbar>
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <Transition name="slide-transform" appear mode="out-in">
+        <component :is="Component" :key="$route.path" />
+      </Transition>
+    </router-view>
   </el-scrollbar>
  </div>
 </template>

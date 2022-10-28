@@ -108,6 +108,7 @@ watch(activeMenu, async () => {
     scroll-behavior: smooth;
   }
   .smooth :deep(.el-scrollbar__wrap) {
+    // 增加横向滚动条滚动过渡效果
     scroll-behavior: smooth;
   }
 </style>
