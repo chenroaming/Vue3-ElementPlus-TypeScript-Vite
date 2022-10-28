@@ -41,20 +41,33 @@ const goTo = (item:Meta) => {
 }
 watch(activeMenu, async () => {
   await nextTick()
+  // 获取第一个菜单标签到当前激活的菜单标签的数组
   const nowArr = tag.value.slice(0, currentSelectedIndex.value + 1)
   const currentWidth = tag.value[currentSelectedIndex.value].$el.clientWidth
+  let nextTagWidth = 0
+  // 获取当前激活的菜单标签的下一个菜单标签的宽度
+  if (tags.value.length > nowArr.length) {
+    nextTagWidth = tag.value[currentSelectedIndex.value + 1].$el.clientWidth
+  }
+  // 获取父级容器的总宽度
   const containerWidth = scrollbar.value!.clientWidth
+  // 获取第一个菜单标签到当前激活的菜单标签的总宽度
   const totalWidth = nowArr.reduce((pre, cur):number => {
     return pre + cur.$el.clientWidth + space
   }, 0)
+  // 判断第一个菜单标签到当前激活菜单标签的总宽度是否大于父级容器宽度
   if (totalWidth > containerWidth) {
-    scrollbarRef.value?.setScrollLeft(currentWidth)
+    // 是的话需要设置滚动条位置为总宽度减去父级容器宽度加上间距值
+    scrollbarRef.value?.setScrollLeft(totalWidth - containerWidth + currentWidth + nextTagWidth + space)
+  } else {
+    // 否则将滚动条位置直接设置为0
+    scrollbarRef.value?.setScrollLeft(0)
   }
 })
 </script>
 <template>
   <div class="scrollbar-container">
-    <el-scrollbar ref="scrollbarRef">
+    <el-scrollbar class="smooth" ref="scrollbarRef">
       <div class="scrollbar-item" ref="scrollbar">
         <el-space :size="space">
           <el-tag
@@ -79,16 +92,22 @@ watch(activeMenu, async () => {
 <style scoped lang = "scss">
   .scrollbar-container {
     // 给容器一个宽度，横向滚动条才会生效
-    max-width: calc(100vw - 200px);
+    max-width: calc(100vw - 250px);
+    padding-left: 35px;
+    padding-right: 100px;
     height: 50px;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%), 0 0 3px 0 rgb(0 0 0 / 4%);
     border-bottom: 1px solid #d8dce5;
+    scroll-behavior: smooth;
   }
   .scrollbar-item {
     display: flex;
     align-items: center;
+    width: 100%;
     height: 50px;
-    padding-left: 35px;
-    padding-right: 100px;
+    scroll-behavior: smooth;
+  }
+  .smooth :deep(.el-scrollbar__wrap) {
+    scroll-behavior: smooth;
   }
 </style>
