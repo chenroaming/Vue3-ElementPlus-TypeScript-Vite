@@ -9,7 +9,7 @@
 
 <style scoped lang = "scss">
   .header {
-    min-width: calc(100vw - 200px);
+    width: 100%;
     height: 60px;
     background: #304156;
   }

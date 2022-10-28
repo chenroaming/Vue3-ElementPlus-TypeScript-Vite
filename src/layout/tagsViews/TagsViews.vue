@@ -92,10 +92,10 @@ watch(activeMenu, async () => {
 <style scoped lang = "scss">
   .scrollbar-container {
     // 给容器一个宽度，横向滚动条才会生效
-    max-width: calc(100vw - 250px);
+    min-width: calc(100% - 250px);
     padding-left: 35px;
     padding-right: 100px;
-    height: 50px;
+    height: 45px;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 12%), 0 0 3px 0 rgb(0 0 0 / 4%);
     border-bottom: 1px solid #d8dce5;
     scroll-behavior: smooth;
@@ -104,7 +104,7 @@ watch(activeMenu, async () => {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 45px;
     scroll-behavior: smooth;
   }
   .smooth :deep(.el-scrollbar__wrap) {

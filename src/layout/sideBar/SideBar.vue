@@ -37,6 +37,9 @@ const nowActive = ref('')
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
   }
+  .el-menu {
+    border-right: none;
+  }
   /* 菜单高度固定便于出现滚动条 */
   .scrollbar-wrapper {
     height: calc(100% - 60px);
@@ -45,7 +48,6 @@ const nowActive = ref('')
 
 <style scoped lang = "scss">
 .sideBar {
-  width: 198px;
   height: 100vh;
   background: #304156;
 }
