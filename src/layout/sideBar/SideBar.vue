@@ -2,15 +2,22 @@
 // 如果vscode中使用的是vetur插件，因为不支持setup语法，此处可能会产生报错“已定义未使用”
 // 推荐使用volar插件来适配
 import SideBarItem from './components/SideBarItem.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { NewRouteRecordRaw } from '@/types/utils/menu'
 const { getters } = useStore()
+const $route = useRoute()
 const isCollapse = computed<boolean>(() => {
   return getters['app/isCollapse']
 })
 const filterRouter = computed<NewRouteRecordRaw>(() => getters['app/asyncRouter'])
 const nowActive = ref('')
+watch($route, (cur:RouteLocationNormalizedLoaded) => {
+  nowActive.value = cur.path
+})
+nowActive.value = $route.path
 </script>
 <template>
  <div class="sideBar">

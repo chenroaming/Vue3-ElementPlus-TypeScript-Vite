@@ -3,9 +3,9 @@
  * @Author: chenroaming
  * @Date: 2022-09-05 14:24:26
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-10-26 09:29:20
+ * @LastEditTime: 2022-10-31 15:02:01
  */
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 
 type Meta = {
   icon?: string,
@@ -21,5 +21,5 @@ export type NewRouteRecordRaw = RouteRecordRaw & {
 
 export type RouteRecord = {
   path: string,
-  meta: Meta
+  meta: RouteMeta
 }

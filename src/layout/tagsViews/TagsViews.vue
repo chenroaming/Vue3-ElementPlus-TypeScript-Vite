@@ -1,6 +1,7 @@
 <script setup lang='ts' name="TagsView">
 import { watch, computed, ref, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { last } from 'lodash'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import type { Meta, RouteRecord } from '@/types/utils/menu'
 import type { ElScrollbar, ElTag } from 'element-plus'
@@ -12,25 +13,12 @@ const tag = ref<InstanceType<typeof ElTag>[]>([])
 const activeMenu = ref<string>('')
 const space = 20
 const routeRecords:RouteRecord[] = []
-const checkIsExist = (item:Meta):boolean => tags.value
-  .some(el => el.title === item.title)
 
 const effectMode = (title:string) => activeMenu.value === title ? 'dark' : 'plain'
 
 const currentSelectedIndex = computed(() => tags.value
   .findIndex(el => el.title === $route.meta.title))
-
-watch($route, (cur:RouteLocationNormalizedLoaded) => {
-  const isExist = routeRecords.some(el => el.path === cur.path)
-  const { path, meta } = cur
-  if (!isExist) {
-    routeRecords.push({ path, meta })
-  }
-  if (!checkIsExist(cur.meta as Meta)) {
-    tags.value.push(cur.meta as Meta)
-  }
-  activeMenu.value = cur.meta.title as string
-})
+const isClosable = computed(() => tags.value.length > 1)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
 const goTo = (item:Meta) => {
   const { path } = routeRecords
@@ -39,6 +27,31 @@ const goTo = (item:Meta) => {
     path
   })
 }
+const deleteTag = (item:Meta) => {
+  const i = routeRecords
+    .findIndex((el:RouteRecord) => el.meta.title === item.title)
+  let isCurrentActived = false
+  if (activeMenu.value === routeRecords[i].meta.title) {
+    isCurrentActived = true
+  }
+  routeRecords.splice(i, 1)
+  tags.value.splice(i, 1)
+  const lastRoute = last(routeRecords)
+  isCurrentActived && lastRoute?.path && $router.push({
+    path: lastRoute?.path
+  })
+}
+
+watch($route, (cur:RouteLocationNormalizedLoaded) => {
+  const isExist = routeRecords.some(el => el.path === cur.path)
+  const { path, meta } = cur
+  if (!isExist) {
+    routeRecords.push({ path, meta })
+    tags.value.push(cur.meta as Meta)
+  }
+  activeMenu.value = cur.meta.title as string
+})
+
 watch(activeMenu, async () => {
   await nextTick()
   // 获取第一个菜单标签到当前激活的菜单标签的数组
@@ -64,6 +77,10 @@ watch(activeMenu, async () => {
     scrollbarRef.value?.setScrollLeft(0)
   }
 })
+// 加载组件时，直接获取当前路由信息，并添加进菜单标签和赋值激活标签
+routeRecords.push({ path: $route.path, meta: $route.meta })
+tags.value.push($route.meta as Meta)
+activeMenu.value = $route.meta.title as string
 </script>
 <template>
   <div class="scrollbar-container">
@@ -78,7 +95,8 @@ watch(activeMenu, async () => {
               }
             "
             @click="goTo(item)"
-            closable
+            @close="deleteTag(item)"
+            :closable="isClosable"
             :effect="effectMode(item.title)"
             style="cursor: pointer;">
             {{ item.title }}
