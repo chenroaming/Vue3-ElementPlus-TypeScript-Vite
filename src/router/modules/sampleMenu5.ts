@@ -17,7 +17,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu5',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单五子菜单1',
+        title: '菜单五二级菜单1',
         roles: ['admin'],
         icon: 'Grid'
       },
@@ -27,7 +27,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu5/child1',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单五子菜单2',
+        title: '菜单五二级菜单2',
         roles: ['admin'],
         icon: 'Grid'
       },
@@ -37,7 +37,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu5/child3',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单五子菜单3',
+        title: '菜单五二级菜单3',
         roles: ['admin'],
         icon: 'Grid'
       },

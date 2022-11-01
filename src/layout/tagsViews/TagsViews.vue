@@ -13,20 +13,40 @@ const tag = ref<InstanceType<typeof ElTag>[]>([])
 const activeMenu = ref<string>('')
 const space = 20
 const routeRecords:RouteRecord[] = []
-
 const effectMode = (title:string) => activeMenu.value === title ? 'dark' : 'plain'
-
 const currentSelectedIndex = computed(() => tags.value
   .findIndex(el => el.title === $route.meta.title))
 const isClosable = computed(() => tags.value.length > 1)
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>()
+/**
+ * @description: 将标签dom节点注册为ref组件
+ * @param {*} el
+ * @param {*} i
+ * @return {*}
+ * @author: chenroaming
+ */
+const tagsRefs = (el:InstanceType<typeof ElTag>, i:number) => {
+  if (el) tag.value[i] = el
+}
+/**
+ * @description: 点击菜单标签跳转到对应的路由
+ * @param {*} item
+ * @return {*}
+ * @author: chenroaming
+ */
 const goTo = (item:Meta) => {
   const { path } = routeRecords
-    .find(el => el.meta.title === item.title) as RouteRecord
-  $router.push({
+    .find(el => el.meta.title === item.title) || { path: '' }
+  path && $router.push({
     path
   })
 }
+/**
+ * @description: 删除菜单标签
+ * @param {*} item
+ * @return {*}
+ * @author: chenroaming
+ */
 const deleteTag = (item:Meta) => {
   const i = routeRecords
     .findIndex((el:RouteRecord) => el.meta.title === item.title)
@@ -41,7 +61,11 @@ const deleteTag = (item:Meta) => {
     path: lastRoute?.path
   })
 }
-
+/**
+ * @description: 监听菜单标签变化，改变菜单标签数组
+ * @return {*}
+ * @author: chenroaming
+ */
 watch($route, (cur:RouteLocationNormalizedLoaded) => {
   const isExist = routeRecords.some(el => el.path === cur.path)
   const { path, meta } = cur
@@ -52,6 +76,11 @@ watch($route, (cur:RouteLocationNormalizedLoaded) => {
   activeMenu.value = cur.meta.title as string
 })
 
+/**
+ * @description: 监听当前菜单激活项变化，动态调整菜单位置
+ * @return {*}
+ * @author: chenroaming
+ */
 watch(activeMenu, async () => {
   await nextTick()
   // 获取第一个菜单标签到当前激活的菜单标签的数组
@@ -90,10 +119,8 @@ activeMenu.value = $route.meta.title as string
           <el-tag
             v-for="(item, i) in tags"
             :key="item.title"
-            :ref="(el) => {
-                if (el) tag[i] = el;
-              }
-            "
+            disable-transitions
+            :ref="el => tagsRefs(el, i)"
             @click="goTo(item)"
             @close="deleteTag(item)"
             :closable="isClosable"

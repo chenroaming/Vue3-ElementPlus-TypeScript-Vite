@@ -18,7 +18,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu6/index',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单六子菜单1',
+        title: '菜单六二级菜单1',
         roles: ['admin'],
         icon: 'Grid',
         isCollapse: true

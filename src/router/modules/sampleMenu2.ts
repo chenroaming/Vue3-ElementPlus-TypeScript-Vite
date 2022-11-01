@@ -17,7 +17,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu2',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单二',
+        title: '菜单二子菜单1',
         roles: ['admin', 'editor'],
         icon: 'Grid'
       },

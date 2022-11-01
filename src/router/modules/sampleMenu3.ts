@@ -18,7 +18,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu3/child1',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单三子菜单1',
+        title: '菜单三二级菜单1',
         roles: ['admin', 'editor'],
         icon: 'Grid'
       },
@@ -28,7 +28,7 @@ const routes:NewRouteRecordRaw = {
       path: '/menu3/child2',
       component: () => import('@/views/dashboard/dashBoard.vue'),
       meta: {
-        title: '菜单三子菜单2',
+        title: '菜单三二级菜单2',
         roles: ['admin', 'editor'],
         icon: 'Grid'
       },
