@@ -14,5 +14,5 @@ const bodyStyle = reactive<KIsStringVIsString>({
 </script>
 <template>
   <el-card shadow="hover" :body-style="bodyStyle">{{ pages }}</el-card>
-  <!-- <el-button @click="test">测试</el-button> -->
+  <el-button>111</el-button>
 </template>
