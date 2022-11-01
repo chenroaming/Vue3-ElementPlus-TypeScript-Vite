@@ -4,6 +4,7 @@ import SideBar from './sideBar/SideBar.vue'
 import TagsViews from './tagsViews/TagsViews.vue'
 import AppMain from './appMain/AppMain.vue'
 import BreadCrumb from './breadcrumb/BreadCrumb.vue'
+import Avatar from './breadcrumb/AvatarComponents.vue'
 import ToggleClick from './toggle/toggleClick.vue'
 </script>
 
@@ -13,8 +14,11 @@ import ToggleClick from './toggle/toggleClick.vue'
   <div class="main">
     <!-- <HeaderContainer /> -->
     <div class="breadCrumb">
-      <ToggleClick />
-      <BreadCrumb />
+      <div class="breadCrumb-item">
+        <ToggleClick />
+        <BreadCrumb />
+      </div>
+      <Avatar />
     </div>
     <TagsViews />
     <AppMain />
@@ -42,10 +46,14 @@ import ToggleClick from './toggle/toggleClick.vue'
   .breadCrumb {
     display: flex;
     align-items: center;
-    // width: calc(100vw - 250px);
+    justify-content: space-between;
     width: 100%;
     height: 50px;
     border-bottom: 1px solid #d8dce5;
+    &-item {
+      display: flex;
+      align-items: center;
+    }
   }
   .main {
     width: 100%;
