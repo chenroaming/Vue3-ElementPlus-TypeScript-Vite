@@ -4,7 +4,7 @@
  * @Author: chenroaming
  * @Date: 2022-08-25 09:33:08
  * @LastEditors: chenroaming
- * @LastEditTime: 2022-09-05 14:03:45
+ * @LastEditTime: 2022-11-02 10:11:17
  */
 import axios from 'axios'
 // import $router from '@/router'
@@ -154,7 +154,7 @@ class Request {
 // axios基础配置
 const baseConfig:AxiosRequestConfig = {
   // axios中请求配置有baseURL选项，表示请求URL公共部分，可根据实际项目自行调整
-  baseURL: import.meta.env.VITE_APP_BASE_API,
+  // baseURL: import.meta.env.VITE_APP_BASE_API,
   // 超时，注意！axios的超时是中断请求，即canceled，非timeout
   // 具体参见http://www.axios-js.com/zh-cn/docs/#axios-create-config
   timeout: 50000

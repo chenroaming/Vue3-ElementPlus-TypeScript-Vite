@@ -6,8 +6,10 @@ const $route = useRoute()
  <div class="appMain">
   <el-scrollbar>
     <router-view v-slot="{ Component }">
-      <Transition name="slide-transform" appear mode="out-in">
-        <component :is="Component" :key="$route.path" />
+      <Transition appear name="slide-transform" mode="out-in">
+        <div :key="$route.path">
+          <component :is="Component" :key="$route.path" />
+        </div>
       </Transition>
     </router-view>
   </el-scrollbar>

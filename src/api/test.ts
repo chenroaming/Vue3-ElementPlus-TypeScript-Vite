@@ -7,7 +7,7 @@ type Response<T> = Promise<
 >
 
 export function testApi ():Response<TestRes> {
-  return Request.post(
+  return Request.get(
     {
       url: '/Vue3-ElementPlus-TypeScript-Vite/test/testApi',
       showTips: true

@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import './assets/index.scss' // 引入一些基础样式
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+// 即使是按需引入，也需要导入全部样式
+import 'element-plus/dist/index.css'
 import { mockXHR } from './mock'
 const app = createApp(App)
 app.use(store)

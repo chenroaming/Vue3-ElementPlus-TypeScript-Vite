@@ -15,7 +15,10 @@ interface Options {
 interface Respond {
   [k:string]: unknown
 }
-
+Mock.setup({
+  // 设置接口延迟多久返回
+  timeout: 1500
+})
 // for front mock
 // please use it cautiously, it will redefine XMLHttpRequest,
 // which will cause many of your third-party libraries to be invalidated(like progress event).
