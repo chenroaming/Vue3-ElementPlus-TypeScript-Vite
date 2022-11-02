@@ -1,6 +1,5 @@
 <script setup lang='ts' name="LoginPage">
 import { ref, reactive } from 'vue'
-// import { Lock, UserFilled } from '@element-plus/icons'
 import { login } from '@/api/user'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
@@ -8,7 +7,7 @@ import type { FormInstance } from 'element-plus'
 import type { LoginParams } from '@/types/request/user'
 const { dispatch } = useStore()
 const { push } = useRouter()
-const isLoading = ref(false)
+const isLoading = ref<boolean>(false)
 const form = reactive<LoginParams>({ userName: '', pwd: '' })
 const loginForm = ref<FormInstance>()
 const rules = ref({
@@ -24,8 +23,8 @@ const handleSubmit = () => {
       ...form
     }).finally(() => { isLoading.value = false })
     if (res.data.code === 20000) {
-      // dispatch('user/setLogin', res.data.data.token)
-      // push('/dashboard')
+      dispatch('user/setLogin', res.data.data)
+      push('/')
     }
   })
 }
@@ -33,7 +32,7 @@ const handleSubmit = () => {
 <template>
  <div class="login">
     <div class="login-form">
-      <div class="login-form-title">Vue3-ElementPlus-Template-Vite</div>
+      <div class="login-form-title">Vue3-ElementPlus-TypeScript-Template-Vite</div>
       <div class="login-form-main">
         <el-form ref="loginForm" :model="form" :rules="rules">
           <el-form-item prop="userName">

@@ -1,11 +1,10 @@
 import type { State } from '@/types/store/app'
 import type { NewRouteRecordRaw } from '@/types/utils/menu'
-import asyncRoutes from '@/router/asyncRoutes'
 const app = {
   namespaced: true,
   state: ():State => ({
     isCollapse: false, // 侧边菜单栏收缩开关
-    asyncRouter: Object.values(asyncRoutes) as NewRouteRecordRaw[]
+    asyncRouter: []
   }),
   mutations: {
     /**
@@ -16,6 +15,9 @@ const app = {
      */
     setCollapse (state:State):void {
       state.isCollapse = !state.isCollapse
+    },
+    setAsyncRoutes (state:State, routes:NewRouteRecordRaw[]) {
+      state.asyncRouter = routes
     }
   },
   actions: {

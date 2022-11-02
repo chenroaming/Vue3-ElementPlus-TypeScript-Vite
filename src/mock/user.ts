@@ -57,7 +57,7 @@ export default [
     type: 'post',
     response: (config:LoginConfig) => {
       const { userName, pwd } = config.body
-      const token = tokens[userName]
+      const { token } = tokens[userName]
       const password = tokens[userName]
       // mock error
       if (!token || !password || pwd !== password.password) {
