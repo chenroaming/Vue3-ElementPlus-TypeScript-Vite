@@ -43,7 +43,7 @@ const user = {
       context.commit('setLogin', true)
       context.commit('setToken', token)
       // 设置登录token的cookie，有效期可自定义
-      Cookie.set('vue3-element-template-token', token, { expires: 3 })
+      Cookie.set('Vue3-ElementPlus-TypeScript-Vite-token', token, { expires: 3 })
     },
     setRoles (context:ActionContext<State, RootState>, roles:string[]) {
       context.commit('setRoles', roles)
@@ -53,7 +53,7 @@ const user = {
       context.commit('setLogin', false)
       // 清空token
       context.commit('setToken', '')
-      Cookie.remove('vue3-element-template-token')
+      Cookie.remove('Vue3-ElementPlus-TypeScript-Vite-token')
       location.reload()
     },
     getRoles (context:ActionContext<State, RootState>) {

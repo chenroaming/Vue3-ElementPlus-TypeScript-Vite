@@ -1,7 +1,12 @@
 <script setup lang='ts' name="AvatarComponents">
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+const { dispatch } = useStore()
 const circleUrl = '/src/assets/images/GitHub-Mark-64px.png'
 const dialogVisible = ref<boolean>(false)
+const logout = () => {
+  dispatch('user/logout')
+}
 </script>
 <template>
    <el-dropdown>
@@ -11,7 +16,7 @@ const dialogVisible = ref<boolean>(false)
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item @click="dialogVisible = true">个人资料</el-dropdown-item>
-        <el-dropdown-item>退出</el-dropdown-item>
+        <el-dropdown-item @click="logout">退出</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
