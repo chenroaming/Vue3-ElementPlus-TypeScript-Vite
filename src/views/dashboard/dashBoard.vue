@@ -22,17 +22,8 @@ const test = async () => {
   await testApi()
   isLoading.value = false
 }
-const toLogin = async () => {
-  isLoading.value = true
-  await login({
-    userName: 'admin',
-    pwd: 'admin123'
-  })
-  isLoading.value = false
-}
 </script>
 <template>
   <el-card shadow="hover" :body-style="bodyStyle">{{ pages }}</el-card>
   <el-button type="primary" style="margin: 20px 0;" @click="test" :loading="isLoading" size="mini">{{ buttonText }}</el-button>
-  <el-button type="primary" style="margin: 20px 0;" @click="toLogin" :loading="isLoading" size="mini">{{ buttonText }}</el-button>
 </template>
