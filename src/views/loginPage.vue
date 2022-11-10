@@ -3,14 +3,14 @@ import { ref, reactive } from 'vue'
 import { login } from '@/api/user'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-import type { FormInstance } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import type { LoginParams } from '@/types/request/user'
 const { dispatch } = useStore()
 const { push } = useRouter()
-const isLoading = ref<boolean>(false)
+const isLoading = ref(false)
 const form = reactive<LoginParams>({ userName: '', pwd: '' })
 const loginForm = ref<FormInstance>()
-const rules = ref({
+const rules = ref<FormRules>({
   userName: [{ required: true, message: '请输入用户名', trigger: ['blur', 'change'] }],
   pwd: [{ required: true, message: '请输入密码', trigger: ['blur', 'change'] }]
 })

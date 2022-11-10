@@ -1,20 +1,18 @@
 <script setup lang='ts' name="DashBoard">
-import { reactive, computed, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import type { RouteLocationNormalized } from 'vue-router'
-import type { KIsStringVIsString } from '@/types/utils'
 import { testApi } from '@/api/test'
-import { login } from '@/api/user'
 const isLoading = ref(false)
 const $route:RouteLocationNormalized = useRoute()
-const pages = computed<string>(() => {
+const pages = computed(() => {
   // 增加一个类型守卫，因为name可能为非string类型
   return typeof $route.name === 'string' ? `This is ${$route.name} page` : ''
 })
-const buttonText = computed<string>(() => {
+const buttonText = computed(() => {
   return isLoading.value ? '接口请求中...' : 'mock接口测试'
 })
-const bodyStyle = reactive<KIsStringVIsString>({
+const bodyStyle = ({
   textAlign: 'center'
 })
 const test = async () => {
