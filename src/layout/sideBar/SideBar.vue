@@ -12,7 +12,7 @@ const $route = useRoute()
 const isCollapse = computed<boolean>(() => {
   return getters['app/isCollapse']
 })
-const filterRouter = computed<NewRouteRecordRaw>(() => getters['app/asyncRouter'])
+const filterRouter = computed<NewRouteRecordRaw[]>(() => getters['app/asyncRouter'])
 const nowActive = ref('')
 watch($route, (cur:RouteLocationNormalizedLoaded) => {
   nowActive.value = cur.path
