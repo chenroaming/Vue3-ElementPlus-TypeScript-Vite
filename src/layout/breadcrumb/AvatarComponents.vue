@@ -1,9 +1,15 @@
 <script setup lang='ts' name="AvatarComponents">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-const { dispatch } = useStore()
+const { dispatch, getters } = useStore()
 const circleUrl = '/src/assets/images/GitHub-Mark-64px.png'
 const dialogVisible = ref<boolean>(false)
+const userInfo = computed(() => {
+  return {
+    userName: getters['user/userInfo'].userName,
+    roles: getters['user/roles'].join('，')
+  }
+})
 const logout = () => {
   dispatch('user/logout')
 }
@@ -26,12 +32,12 @@ const logout = () => {
     width="30%"
   >
     <el-row class="margin-bottom-20 bold f-20">
-      <el-col :span="3">姓名：</el-col>
-      <el-col :span="21">张三</el-col>
+      <el-col :span="8">姓名（name）：</el-col>
+      <el-col :span="16">{{ userInfo.userName }}</el-col>
     </el-row>
     <el-row class="margin-bottom-20 bold f-20">
-      <el-col :span="3">角色：</el-col>
-      <el-col :span="21">法外狂徒</el-col>
+      <el-col :span="8">角色（role）：</el-col>
+      <el-col :span="16">{{ userInfo.roles }}</el-col>
     </el-row>
     <template #footer>
       <span class="dialog-footer">

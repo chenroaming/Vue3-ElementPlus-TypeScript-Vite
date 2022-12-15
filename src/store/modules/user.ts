@@ -5,6 +5,7 @@ import { getRoles } from '@/api/user'
 import type { ActionContext } from 'vuex'
 import type { NewRouteRecordRaw } from '@/types/utils/menu'
 import type { RootState } from '@/types/store/rootState'
+import type { LoginData } from '@/types/response/user'
 const hasPermission = (route:NewRouteRecordRaw, roles:string[]):boolean => {
   // 判断单个路由中的角色是否包含在角色列表中，或者为any即所有角色均可访问
   return (route?.meta?.roles?.some(el => roles.includes(el)) || route?.meta?.roles?.includes('any')) ?? false
@@ -24,11 +25,15 @@ const user = {
   state: ():State => ({
     isLogin: false,
     token: '',
-    roles: []
+    roles: [],
+    userInfo: {
+      userName: ''
+    }
   }),
   mutations: {
-    setLogin (state:State, status:boolean) {
-      state.isLogin = status
+    setLogin (state:State, data:LoginData) {
+      state.isLogin = true
+      state.userInfo = data.userInfo
     },
     setToken (state:State, token:string) {
       state.token = token
@@ -38,12 +43,12 @@ const user = {
     }
   },
   actions: {
-    setLogin (context:ActionContext<State, RootState>, token:string) {
+    setLogin (context:ActionContext<State, RootState>, data:LoginData) {
       // 设置登录状态和token
-      context.commit('setLogin', true)
-      context.commit('setToken', token)
+      context.commit('setLogin', data)
+      context.commit('setToken', data.token)
       // 设置登录token的cookie，有效期可自定义
-      Cookie.set('Vue3-ElementPlus-TypeScript-Vite-token', token, { expires: 3 })
+      Cookie.set('Vue3-ElementPlus-TypeScript-Vite-token', data.token, { expires: 3 })
     },
     setRoles (context:ActionContext<State, RootState>, roles:string[]) {
       context.commit('setRoles', roles)
@@ -70,7 +75,8 @@ const user = {
   },
   getters: {
     isLogin: (state:State) => state.isLogin,
-    roles: (state:State) => state.roles
+    roles: (state:State) => state.roles,
+    userInfo: (state:State) => state.userInfo
   }
 }
 

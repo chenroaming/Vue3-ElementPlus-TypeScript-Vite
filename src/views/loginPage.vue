@@ -21,7 +21,7 @@ const handleSubmit = () => {
     isLoading.value = true
     const res = await login({
       ...form
-    }).finally(() => { isLoading.value = false })
+    })
     if (res.data.code === 20000) {
       dispatch('user/setLogin', res.data.data)
       push('/')

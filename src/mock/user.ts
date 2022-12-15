@@ -66,11 +66,15 @@ export default [
           message: '账户名或密码错误'
         }
       }
-
       return {
         code: 20000,
         message: '登录成功',
-        data: token
+        data: {
+          token,
+          userInfo: {
+            userName
+          }
+        }
       }
     }
   },
