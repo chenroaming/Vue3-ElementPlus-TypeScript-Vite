@@ -29,5 +29,5 @@ const test = async () => {
 <template>
   <el-card shadow="hover" :body-style="bodyStyle">{{ pages }}</el-card>
   <el-card v-if="rolesInfo" shadow="hover" :body-style="bodyStyle">{{ rolesInfo }}</el-card>
-  <el-button type="primary" style="margin: 20px 0;" @click="test" :loading="isLoading" size="mini">{{ buttonText }}</el-button>
+  <el-button type="primary" style="margin: 20px 0;" @click="test" :loading="isLoading" size="small">{{ buttonText }}</el-button>
 </template>
