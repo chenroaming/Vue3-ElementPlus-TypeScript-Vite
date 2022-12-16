@@ -50,6 +50,7 @@ const logout = () => {
 <style scoped lang = "scss">
   .avatar {
     margin: 0 50px;
+    margin-left: 15px;
     cursor: pointer;
   }
 </style>

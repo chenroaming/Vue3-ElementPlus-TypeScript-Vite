@@ -5,6 +5,7 @@ import TagsViews from './tagsViews/TagsViews.vue'
 import AppMain from './appMain/AppMain.vue'
 import BreadCrumb from './breadcrumb/BreadCrumb.vue'
 import Avatar from './breadcrumb/AvatarComponents.vue'
+import SystemConfig from './config/systemConfig.vue'
 import ToggleClick from './toggle/toggleClick.vue'
 </script>
 
@@ -18,7 +19,10 @@ import ToggleClick from './toggle/toggleClick.vue'
         <ToggleClick />
         <BreadCrumb />
       </div>
-      <Avatar />
+      <div class="breadCrumb-item">
+        <SystemConfig />
+        <Avatar />
+      </div>
     </div>
     <TagsViews />
     <AppMain />
@@ -53,6 +57,7 @@ import ToggleClick from './toggle/toggleClick.vue'
     &-item {
       display: flex;
       align-items: center;
+      justify-content: flex-start;
     }
   }
   .main {
