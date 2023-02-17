@@ -25,7 +25,9 @@ const handleSubmit = () => {
     if (res.data.code === 20000) {
       dispatch('user/setLogin', res.data.data)
       push('/')
+      return
     }
+    isLoading.value = false
   })
 }
 </script>
